@@ -139,8 +139,8 @@ We can proceed to assign lineages of the sequences using the commandline typing 
     nextflow run main.nf \
         --data "../rvfv-typing-tutorial/L/data/*.fa" \
         --segment L \
-        --outdir L/output-dir \
-        -work-dir L/work-dir
+        --outdir output-dir/L \
+        -work-dir work-dir/L
 
     ```
    
@@ -150,19 +150,19 @@ We can proceed to assign lineages of the sequences using the commandline typing 
     nextflow run main.nf \
         --data "../rvfv-typing-tutorial/M/data/*.fa" \
         --segment M \
-        --outdir M/output-dir \
-        -work-dir M/work-dir
+        --outdir output-dir/M \
+        -work-dir work-dir/M
 
     ```
    
-10. Assign lineages to the `L` segment sequences using the appropriate classifier (segment)
+10. Assign lineages to the `S` segment sequences using the appropriate classifier (segment)
 
     ```
     nextflow run main.nf \
         --data "../rvfv-typing-tutorial/S/data/*.fa" \
         --segment S \
-        --outdir S/output-dir \
-        -work-dir S/work-dir
+        --outdir output-dir/S \
+        -work-dir work-dir/S
 
     ```
     
@@ -170,14 +170,14 @@ We can proceed to assign lineages of the sequences using the commandline typing 
 We can still use the glycoprotein gene (located in the M segment) classifier to assign lienages.
 However, this requires M segment input sequences and not either L or S segment sequences.
 
-10. Assign lineages to the `L` segment sequences using the appropriate classifier (segment)
+10. Assign lineages to the `M` segment sequences using the partial glycoprotein (Gn) gene classifier (segment)
 
     ```
     nextflow run main.nf \
         --data "../rvfv-typing-tutorial/M/data/*.fa" \
         --segment Gn \
-        --outdir Gn/output-dir \
-        -work-dir Gn/work-dir
+        --outdir output-dir/Gn \
+        -work-dir work-dir/Gn
 
     ```
 
