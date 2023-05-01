@@ -136,7 +136,6 @@ We can proceed to assign lineages of the sequences using the commandline typing 
         --skip_diamond \
         --outdir output-dir/L \
         -work-dir work-dir/L
-
     ```
    
 9. Assign lineages to the `M` segment sequences using the appropriate classifier (segment)
