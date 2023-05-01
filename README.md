@@ -164,7 +164,7 @@ We can proceed to assign lineages of the sequences using the commandline typing 
 We can still use the glycoprotein gene (located in the M segment) classifier to assign lineages.
 
 
-14. Assign lineages to the glycoprotein gene sequences using the partial glycoprotein (Gn) gene classifier
+11. Assign lineages to the M segment sequences using the partial glycoprotein (Gn) gene classifier
 
     ```
     nextflow run main.nf \
