@@ -55,20 +55,22 @@ accession numbers as well as related metadata. The first column is the name of t
 are the `accessions` for the `L`, `M` and `S` genomic segments sequences.
 
 
-
-1. We will create separate directories (for each genomic segment) to store the genomic sequences in `fasta` format retrieved from NCBI.
+1. Clone the tutorial repository
    ```
    cd ~/Downloads
-   mkdir -p rvfv-typing-tutorial/{S,M,L}
+   git clone https://github.com/ajodeh-juma/rvfv-typing-tutorial.git
    cd rvfv-typing-tutorial
    ```
-2. Download the `RVFV.combined.csv` file
-   ```
-   wget -c https://raw.githubusercontent.com/ajodeh-juma/rvfv-typing-tutorial/master/RVFV.combined.csv
-   ```
+   
+2. We will create separate directories (for each genomic segment) to store the genomic sequences in `fasta` format retrieved from NCBI.
+
+    ```
+    mkdir -p ./{S,M,L}
+    ```
+
 3. Extract `L` segment accessions
    ```
-   awk -F ',' '{if (NR==1) printf "accession\n"; else printf "%s\n", $2}' RVFV.combined.csv > L-segment-accessions.txt
+   awk -F ',' '{if (NR==1) printf "accession\n"; else printf "%s\n", $2}' RVFV.combined.csv > L/L-segment-accessions.txt
    ```
 
 
