@@ -185,7 +185,7 @@ We can still use the glycoprotein gene (located in the M segment) classifier to 
 13. Write individual accessions as single fasta files
 
     ```
-    python ../rvfv-typing-tutorial/write_each_sequence.py \
+    python ../rvfv-typing-tutorial/scripts/write_each_sequence.py \
         --multi-fasta ../rvfv-typing-tutorial/Gn/Gn.aln.masked.fasta \
         --outDir ../rvfv-typing-tutorial/Gn/data
     ```
