@@ -170,14 +170,13 @@ We can still use the glycoprotein gene (located in the M segment) classifier to 
         --thread 4 \
         --anysymbol ../rvfv-typing-tutorial/M/M-segment.fasta > \
         ../rvfv-typing-tutorial/Gn/Gn.aln.fasta
-
     ```
 
 12. Subset the sequences to obtain the partial glycoprotein sequence
 
     ```
     python ../rvfv-typing-tutorial/scripts/subsetByCoordinates.py \
-       --fasta "${alignment}" \
+       --fasta ../rvfv-typing-tutorial/Gn/Gn.aln.fasta \
        --start 815 \
        --end 1305 \
        --outfile ../rvfv-typing-tutorial/Gn/Gn.aln.masked.fasta
