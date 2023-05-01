@@ -152,7 +152,6 @@ We can proceed to assign lineages of the sequences using the commandline typing 
         --segment M \
         --outdir output-dir/M \
         -work-dir work-dir/M
-
     ```
    
 10. Assign lineages to the `S` segment sequences using the appropriate classifier (segment)
@@ -163,7 +162,6 @@ We can proceed to assign lineages of the sequences using the commandline typing 
         --segment S \
         --outdir output-dir/S \
         -work-dir work-dir/S
-
     ```
     
     
@@ -178,6 +176,5 @@ However, this requires M segment input sequences and not either L or S segment s
         --segment Gn \
         --outdir output-dir/Gn \
         -work-dir work-dir/Gn
-
     ```
 
