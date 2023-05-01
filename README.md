@@ -133,6 +133,7 @@ We can proceed to assign lineages of the sequences using the commandline typing 
     nextflow run main.nf \
         --input "../rvfv-typing-tutorial/L/data/*.fasta" \
         --segment L \
+        --skip_diamond \
         --outdir output-dir/L \
         -work-dir work-dir/L
 
@@ -144,6 +145,7 @@ We can proceed to assign lineages of the sequences using the commandline typing 
     nextflow run main.nf \
         --input "../rvfv-typing-tutorial/M/data/*.fasta" \
         --segment M \
+        --skip_diamond \
         --outdir output-dir/M \
         -work-dir work-dir/M
     ```
@@ -154,6 +156,7 @@ We can proceed to assign lineages of the sequences using the commandline typing 
     nextflow run main.nf \
         --input "../rvfv-typing-tutorial/S/data/*.fasta" \
         --segment S \
+        --skip_diamond \
         --outdir output-dir/S \
         -work-dir work-dir/S
     ```
@@ -168,6 +171,7 @@ However, this requires M segment input sequences and not either L or S segment s
     nextflow run main.nf \
         --input "../rvfv-typing-tutorial/M/data/*.fasta" \
         --segment Gn \
+        --skip_diamond \
         --outdir output-dir/Gn \
         -work-dir work-dir/Gn
     ```
