@@ -163,42 +163,15 @@ We can proceed to assign lineages of the sequences using the commandline typing 
     
 We can still use the glycoprotein gene (located in the M segment) classifier to assign lineages.
 
-11. Align the M segment sequences
-
-    ```
-    mafft \
-        --thread 4 \
-        --anysymbol ../rvfv-typing-tutorial/M/M-segment.fasta > \
-        ../rvfv-typing-tutorial/Gn/Gn.aln.fasta
-    ```
-
-12. Subset the sequences to obtain the partial glycoprotein sequence
-
-    ```
-    python ../rvfv-typing-tutorial/scripts/subsetByCoordinates.py \
-       --fasta ../rvfv-typing-tutorial/Gn/Gn.aln.fasta \
-       --start 815 \
-       --end 1305 \
-       --outfile ../rvfv-typing-tutorial/Gn/Gn.aln.masked.fasta
-    ```
-  
-13. Write individual accessions as single fasta files
-
-    ```
-    python ../rvfv-typing-tutorial/scripts/write_each_sequence.py \
-        --multi-fasta ../rvfv-typing-tutorial/Gn/Gn.aln.masked.fasta \
-        --outDir ../rvfv-typing-tutorial/Gn/data
-    ```
-
 
 14. Assign lineages to the glycoprotein gene sequences using the partial glycoprotein (Gn) gene classifier
 
     ```
     nextflow run main.nf \
-        --input "../rvfv-typing-tutorial/Gn/data/*.fasta" \
+        --input "../rvfv-typing-tutorial/M/data/*.fasta" \
         --segment Gn \
         --skip_diamond \
-        --outdir output-dir/Gn-out \
-        -work-dir work-dir/Gn-out
+        --outdir output-dir/Gn \
+        -work-dir work-dir/Gn
     ```
 

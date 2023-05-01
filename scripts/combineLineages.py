@@ -39,19 +39,19 @@ def parse_args():
                                      "L, M, S, country, location. host, date "
                                 )
     required_group.add_argument('--s', required=True, type=str,
-                                dest="s_segment",
+                                dest="s_lineage",
                                 help="path to the lineages.csv report file for S segment"
                                 )
     required_group.add_argument('--m', required=True,
-                                dest="m_segment",
+                                dest="m_lineage",
                                 help="path to the lineages.csv report file for M segment"
                                 )
     required_group.add_argument('--l', required=True,
-                                dest="l_segment",
+                                dest="l_lineage",
                                 help="path to the lineages.csv report file for L segment"
                                 )
     required_group.add_argument('--gn', required=True,
-                                dest="gn_gene",
+                                dest="gn_lineage",
                                 help="path to the lineages.csv report file for Gn glycoprotein gene"
                                 )
     required_group.add_argument('--prefix', required=True, metavar='<str>',
@@ -63,7 +63,7 @@ def parse_args():
     return parser
 
 
-def merge_sequences_by_strain(metadata, s_segment, m_segment, l_segment, gn_gene, prefix, outdir):
+def merge_sequences_by_strain(metadata, s_lineage, m_lineage, l_lineage, gn_lineage, prefix, outdir):
     """
     search and download complete rift valley fever virus sequences from NCBI
 
@@ -83,74 +83,20 @@ def merge_sequences_by_strain(metadata, s_segment, m_segment, l_segment, gn_gene
     out_file = os.path.join(outdir, prefix) + '.combined.lineages.csv'
 
     meta_df = read_metadata(metadata)
-    print(meta_df)
-    # m_df = read_metadata(m_segment[0])
-    # l_df = read_metadata(l_segment[0])
-    #
-    # # merge dataframes and create a dictionary
-    # df1 = l_df.merge(m_df, on='strain')
-    # df2 = df1.merge(s_df, on="strain")
-    # df3 = df2[['strain', 'accession_x', 'accession_y', 'accession', 'country', 'location', 'host', 'date']]
-    # df3.date = df3.date.str.split('-').str[2]
-    # df3['strain'].replace(to_replace="[^0-9a-zA-Z]+", value= "_", regex=True, inplace=True)
-    # df3['taxa'] = df3.strain.str.cat(df3.date, "|")
-    # df4 = df3.rename(columns={'accession_x': 'L', 'accession_y': 'M', 'accession': 'S'})
-    # df_dict = df4.set_index('strain').T.to_dict('list')
-    #
-    #
-    #
-    # l_dict = seq_dict(l_segment[0])
-    # m_dict = seq_dict(m_segment[0])
-    # s_dict = seq_dict(s_segment[0])
-    #
-    #
-    # # # merge dicts
-    # fasta_dict = {**l_dict, **m_dict, **s_dict}
-    #
-    #
-    # f_dict = dict()
-    #
-    # for k, v in df_dict.items():
-    #     if l_dict.get(v[0]) is None:
-    #         continue
-    #     else:
-    #         accession = k + '|' + v[6]
-    #         seq = l_dict.get(v[0])
-    #         if not accession in f_dict:
-    #             f_dict[accession] = seq
-    #
-    # for k, v in df_dict.items():
-    #     if m_dict.get(v[1]) is None:
-    #         continue
-    #     else:
-    #         accession = k + '|' + v[6]
-    #         seq = m_dict.get(v[1])
-    #         if accession in f_dict:
-    #             f_dict[accession] += seq
-    #
-    #
-    # for k, v in df_dict.items():
-    #     if s_dict.get(v[2]) is None:
-    #         continue
-    #     else:
-    #         accession = k + '|' + v[6]
-    #         seq = s_dict.get(v[2])
-    #         if accession in f_dict:
-    #             f_dict[accession] += seq
-    #
-    #
-    #
-    # df4.to_csv(out_file, index=False)
-    #
-    # with open(out_fasta, 'w') as f_obj:
-    #     for k, v in f_dict.items():
-    #         print(k, len(v))
-    #         # strain = re.sub('[^0-9a-zA-Z]+', '_', k)
-    #         f_obj.write(">" + k + "\n")
-    #         f_obj.write(textwrap.fill(v, 80))
-    #         f_obj.write("\n")
-    #
-    # logging.info("output files:\ncsv -> {}\nfasta -> {}".format(out_file, out_fasta))
+
+    l_df = read_lineages(l_lineage)
+    m_df = read_lineages(m_lineage)
+    s_df = read_lineages(s_lineage)
+    gn_df = read_lineages(gn_lineage)
+
+    df1 = pd.merge(meta_df, l_df, left_on="L", right_on="Query").rename(columns={'Query': 'L-query', 'Lineage': 'L-lineage', 'UFbootstrap': 'L-UFb'}).drop(['Year_first', 'Year_last'], axis=1)
+    df2 = pd.merge(df1, m_df, left_on="M", right_on="Query").rename(columns={'Query': 'M-query', 'Lineage': 'M-lineage', 'UFbootstrap': 'M-UFb'}).drop(['Year_first', 'Year_last'], axis=1)
+    df3 = pd.merge(df2, s_df, left_on="S", right_on="Query").rename(columns={'Query': 'S-query', 'Lineage': 'S-lineage', 'UFbootstrap': 'S-UFb'}).drop(['Year_first', 'Year_last'], axis=1)
+    df4 = pd.merge(df3, gn_df, left_on="M", right_on="Query").rename(columns={'Query': 'Gn-query', 'Lineage': 'Gn-lineage', 'UFbootstrap': 'Gn-UFb'}).drop(['L-query', 'M-query', 'S-query', 'Gn-query'], axis=1)
+
+    print(df4)
+
+    df4.to_csv(out_file, index=False)
     return out_file
 
 
@@ -159,6 +105,16 @@ def read_metadata(metadata):
     :@param metadata
     """
     df = pd.read_csv(metadata, sep=",")
+    df = df.drop(['taxa'], axis=1)
+    return df
+
+
+def read_lineages(lineage):
+    """
+    :@param lineage
+    """
+    df = pd.read_csv(lineage, sep=",")
+    df = df[['Query', 'Lineage', 'UFbootstrap', 'Year_first', 'Year_last']]
     return df
 
 
@@ -166,10 +122,10 @@ def main():
     parser = parse_args()
     args = parser.parse_args()
     merge_sequences_by_strain(metadata=args.metadata,
-                              s_segment=args.s_segment,
-                              m_segment=args.m_segment,
-                              l_segment=args.l_segment,
-                              gn_gene=args.gn_gene,
+                              s_lineage=args.s_lineage,
+                              m_lineage=args.m_lineage,
+                              l_lineage=args.l_lineage,
+                              gn_lineage=args.gn_lineage,
                               prefix=args.prefix,
                               outdir=args.outdir)
 
