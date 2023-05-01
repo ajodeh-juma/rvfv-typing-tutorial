@@ -80,8 +80,6 @@ are the `accessions` for the `L`, `M` and `S` genomic segments sequences.
         --accessions L/L-segment-accessions.txt \
         --fasta L/L-segment.fasta \
         --database nucleotide \
-        --min-len 6000 \
-        --max-len 6500 \
         --out_dir L/data \
         --cleanup True
    ```
@@ -99,8 +97,6 @@ are the `accessions` for the `L`, `M` and `S` genomic segments sequences.
         --accessions M/M-segment-accessions.txt \
         --fasta M/M-segment.fasta \
         --database nucleotide \
-        --min-len 3500 \
-        --max-len 3900 \
         --out_dir M/data \
         --cleanup True
    ```
@@ -118,8 +114,6 @@ are the `accessions` for the `L`, `M` and `S` genomic segments sequences.
         --accessions S/S-segment-accessions.txt \
         --fasta S/S-segment.fasta \
         --database nucleotide \
-        --min-len 1500 \
-        --max-len 1700 \
         --out_dir S/data \
         --cleanup True
    ```
