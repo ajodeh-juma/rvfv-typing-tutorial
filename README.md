@@ -175,3 +175,15 @@ We can still use the glycoprotein gene (located in the M segment) classifier to 
         -work-dir work-dir/Gn
     ```
 
+12. We can combine the lineages report to see how each classifier performed in the lineage assignment process
+
+    ```
+    python ../rvfv-typing-tutorial/scripts/combineLineages.py \
+        --metadata ../rvfv-typing-tutorial/RVFV.combined.csv \
+        --s output-dir/S/report/lineages.csv \
+        --m output-dir/M/report/lineages.csv \
+        --l output-dir/L/report/lineages.csv \
+        --gn output-dir/Gn/report/lineages.csv \
+        --prefix test \
+        --outDir ../rvfv-typing-tutorial/
+    ```
