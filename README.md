@@ -41,6 +41,10 @@ while for the command line, we will install the tool from the [github repository
 
 
 #### ***Input data***
+We will retrieve publicly available genomic sequence data from [NCBI](https://www.ncbi.nlm.nih.gov/) using customized
+steps. The file `RVFV.combined.csv` contains a list of RVFV strains and each of the 3 genomic segment
+accession numbers as well as related metadata. The first column is the name of the RVFV `strain`. Columns `2`, `3` and `4` 
+are the `accessions` for the `L`, `M` and `S` genomic segments sequences.
 
 
 
