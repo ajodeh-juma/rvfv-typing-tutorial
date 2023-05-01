@@ -56,7 +56,7 @@ are the `accessions` for the `L`, `M` and `S` genomic segments sequences.
    ```
 2. Download the `RVFV.combined.csv` file
    ```
-   wget -c https://github.com/ajodeh-juma/rvfv-typing-tutorial/blob/master/RVFV.combined.csv
+   wget -c https://raw.githubusercontent.com/ajodeh-juma/rvfv-typing-tutorial/master/RVFV.combined.csv
    ```
 3. 
 
