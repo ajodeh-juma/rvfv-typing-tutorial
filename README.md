@@ -58,7 +58,10 @@ are the `accessions` for the `L`, `M` and `S` genomic segments sequences.
    ```
    wget -c https://raw.githubusercontent.com/ajodeh-juma/rvfv-typing-tutorial/master/RVFV.combined.csv
    ```
-3. 
+3. Extract `L` segment accessions
+   ```
+   awk -F ',' '{if (NR==1) printf "accession\n"; else printf "%s\n", $2}' RVFV.combined.csv > L-segment-accessions.txt
+   ```
 
 
 
