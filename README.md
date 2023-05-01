@@ -130,7 +130,7 @@ We can proceed to assign lineages of the sequences using the commandline typing 
 
 7. Change to the pipeline directory
    ```
-   cd rvfvtyping
+   cd ../rvfvtyping
    ```
 
 8. Assign lineages to the `L` segment sequences using the appropriate classifier (segment)
