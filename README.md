@@ -48,4 +48,18 @@ are the `accessions` for the `L`, `M` and `S` genomic segments sequences.
 
 
 
+1. We will create separate directories (for each genomic segment) to store the genomic sequences in `fasta` format retrieved from NCBI.
+   ```
+   cd
+   mkdir -p rvfv-typing-tutorial/{S,M,L}
+   cd rvfv-typing-tutorial
+   ```
+2. Download the `RVFV.combined.csv` file
+   ```
+   wget -c https://github.com/ajodeh-juma/rvfv-typing-tutorial/blob/master/RVFV.combined.csv
+   ```
+3. 
+
+
+
 
