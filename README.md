@@ -74,5 +74,53 @@ are the `accessions` for the `L`, `M` and `S` genomic segments sequences.
    ```
 
 
+4. Retrieve the sequences using auxilliary python script provided 
+   ```
+   python scripts/accessionsToSequences.py \
+        --accessions L/L-segment-accessions.txt \
+        --fasta L/L-segment.fasta \
+        --database nucleotide \
+        --min-len 6000 \
+        --max-len 6500 \
+        --out_dir M/data \
+        --cleanup True
+   ```
 
+
+5. Extract `M` segment accessions
+   ```
+   awk -F ',' '{if (NR==1) printf "accession\n"; else printf "%s\n", $3}' RVFV.combined.csv > M/M-segment-accessions.txt
+   ```
+
+
+6. Retrieve the sequences using auxilliary python script provided 
+   ```
+   python scripts/accessionsToSequences.py \
+        --accessions M/M-segment-accessions.txt \
+        --fasta M/M-segment.fasta \
+        --database nucleotide \
+        --min-len 3500 \
+        --max-len 3900 \
+        --out_dir M/data \
+        --cleanup True
+   ```
+
+
+5. Extract `S` segment accessions
+   ```
+   awk -F ',' '{if (NR==1) printf "accession\n"; else printf "%s\n", $4}' RVFV.combined.csv > S/S-segment-accessions.txt
+   ```
+
+
+6. Retrieve the sequences using auxilliary python script provided 
+   ```
+   python scripts/accessionsToSequences.py \
+        --accessions S/S-segment-accessions.txt \
+        --fasta S/S-segment.fasta \
+        --database nucleotide \
+        --min-len 1500 \
+        --max-len 1700 \
+        --out_dir S/data \
+        --cleanup True
+   ```
 
