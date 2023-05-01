@@ -82,7 +82,7 @@ are the `accessions` for the `L`, `M` and `S` genomic segments sequences.
         --database nucleotide \
         --min-len 6000 \
         --max-len 6500 \
-        --out_dir M/data \
+        --out_dir L/data \
         --cleanup True
    ```
 
