@@ -123,4 +123,61 @@ are the `accessions` for the `L`, `M` and `S` genomic segments sequences.
         --out_dir S/data \
         --cleanup True
    ```
+   
+The retrieved sequences in `FASTA` format can be found in `L/data`, `M/data` and `S/data` directories
+
+We can proceed to assign lineages of the sequences using the commandline typing tool.
+
+7. Change to the pipeline directory
+   ```
+   cd rvfvtyping
+   ```
+
+8. Assign lineages to the `L` segment sequences using the appropriate classifier (segment)
+
+    ```
+    nextflow run main.nf \
+        --data "../rvfv-typing-tutorial/L/data/*.fa" \
+        --segment L \
+        --outdir L/output-dir \
+        -work-dir L/work-dir
+
+    ```
+   
+9. Assign lineages to the `M` segment sequences using the appropriate classifier (segment)
+
+    ```
+    nextflow run main.nf \
+        --data "../rvfv-typing-tutorial/M/data/*.fa" \
+        --segment M \
+        --outdir M/output-dir \
+        -work-dir M/work-dir
+
+    ```
+   
+10. Assign lineages to the `L` segment sequences using the appropriate classifier (segment)
+
+    ```
+    nextflow run main.nf \
+        --data "../rvfv-typing-tutorial/S/data/*.fa" \
+        --segment S \
+        --outdir S/output-dir \
+        -work-dir S/work-dir
+
+    ```
+    
+    
+We can still use the glycoprotein gene (located in the M segment) classifier to assign lienages.
+However, this requires M segment input sequences and not either L or S segment sequences.
+
+10. Assign lineages to the `L` segment sequences using the appropriate classifier (segment)
+
+    ```
+    nextflow run main.nf \
+        --data "../rvfv-typing-tutorial/M/data/*.fa" \
+        --segment Gn \
+        --outdir Gn/output-dir \
+        -work-dir Gn/work-dir
+
+    ```
 
