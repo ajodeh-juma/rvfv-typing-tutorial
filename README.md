@@ -38,6 +38,14 @@ However, for the command line implementation, familiarity with basic Linux comma
 For RVFV typing on the web, we will access the tool via [Genome Detective](https://www.genomedetective.com/app/typingtool/rvfv/)
 while for the command line, we will install the tool from the [github repository](https://github.com/ajodeh-juma/rvfvtyping).
 
+1. Clone the [github repository](https://github.com/ajodeh-juma/rvfvtyping) as indicated below:
+   ```
+   cd ~/Downloads
+   git clone https://github.com/ajodeh-juma/rvfvtyping.git
+   cd rvfvtyping
+   conda env create -n rvfvtyping-env -f environment.yml
+   conda activate rvfvtyping-env
+   ```
 
 
 #### ***Input data***
@@ -50,7 +58,7 @@ are the `accessions` for the `L`, `M` and `S` genomic segments sequences.
 
 1. We will create separate directories (for each genomic segment) to store the genomic sequences in `fasta` format retrieved from NCBI.
    ```
-   cd
+   cd ~/Downloads
    mkdir -p rvfv-typing-tutorial/{S,M,L}
    cd rvfv-typing-tutorial
    ```
